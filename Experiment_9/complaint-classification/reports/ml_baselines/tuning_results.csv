@@ -1,0 +1,4 @@
+Model,Best_Params,Best_CV_Macro_F1,CV_Macro_F1_Std,Search_Duration_Sec
+LinearSVC,"{'clf__C': 0.5, 'clf__class_weight': 'balanced'}",0.8452,0.0073,21.61
+SGDClassifier,"{'clf__alpha': 1e-05, 'clf__loss': 'log_loss'}",0.8417,0.006,21.52
+LogisticRegression,"{'clf__C': 10.0, 'clf__class_weight': None}",0.8403,0.005,111.68

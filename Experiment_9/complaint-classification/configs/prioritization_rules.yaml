@@ -1,0 +1,149 @@
+# Phase 6: Configurable Complaint Prioritization, Risk Scoring, Escalation, Routing & SLA Rules
+# Note: All scores, tiers, and SLAs are provisional operational decision-support rules,
+# not statistically calibrated risk probabilities or legally mandated deadlines.
+
+version: "1.0.0"
+
+classification:
+  primary_model_name: "LinearSVC (C=0.5, balanced) + Word TF-IDF (1,2)"
+  primary_model_path: "models/best_traditional_ml_model.joblib"
+  calibrated_model_path: "models/calibrated_linear_svc.joblib"
+  transformer_model_path: "models/transformers/best_transformer_model"
+  low_confidence_threshold: 0.65
+  short_narrative_word_threshold: 15
+  heavy_redaction_count_threshold: 6
+
+scoring:
+  scale_min: 0
+  scale_max: 100
+  dimensions:
+    financial_impact:
+      max_points: 28
+      unauthorized_or_fraud_points: 14
+      monetary_loss_points: 8
+      high_monetary_threshold_usd: 1000.0
+      high_monetary_bonus_points: 6
+    urgency_and_harm:
+      max_points: 26
+      account_access_disruption_points: 14
+      severe_hardship_points: 12
+    escalation_signal:
+      max_points: 20
+      legal_action_points: 12
+      regulatory_complaint_points: 8
+    repeat_contact_history:
+      max_points: 16
+      repeated_contact_points: 10
+      delayed_or_no_response_points: 6
+    time_sensitivity:
+      max_points: 10
+      time_sensitive_points: 10
+
+priority_tiers:
+  - tier: "P1"
+    label: "Critical"
+    min_score: 80
+    max_score: 100
+    meaning: "Immediate human review recommended"
+  - tier: "P2"
+    label: "High"
+    min_score: 60
+    max_score: 79
+    meaning: "Urgent review"
+  - tier: "P3"
+    label: "Medium"
+    min_score: 40
+    max_score: 59
+    meaning: "Standard queue with elevated attention"
+  - tier: "P4"
+    label: "Low"
+    min_score: 0
+    max_score: 39
+    meaning: "Normal processing queue"
+
+escalation_rules:
+  - id: "legal_escalation"
+    indicator: "legal_action_mentioned"
+    action: "recommend_escalation"
+    level: "high"
+    reason: "Explicit legal action or attorney involvement is mentioned in the complaint."
+  - id: "regulatory_escalation"
+    indicator: "regulatory_complaint_mentioned"
+    action: "recommend_escalation"
+    level: "high"
+    reason: "Complaint references a regulatory agency or formal regulatory filing."
+  - id: "fraud_or_unauthorized_escalation"
+    indicator: "unauthorized_transaction"
+    action: "recommend_escalation"
+    level: "high"
+    reason: "Complaint reports an unauthorized transaction or potential fraud."
+  - id: "account_access_escalation"
+    indicator: "account_access_issue"
+    action: "recommend_escalation"
+    level: "medium"
+    reason: "Consumer reports frozen account or inability to access funds."
+  - id: "severe_hardship_escalation"
+    indicator: "severe_hardship"
+    action: "recommend_escalation"
+    level: "high"
+    reason: "Complaint mentions severe financial consequences (e.g., foreclosure, eviction, or wage garnishment)."
+  - id: "repeated_unresolved_escalation"
+    indicator: "repeated_contact"
+    action: "recommend_escalation"
+    level: "medium"
+    reason: "Consumer reports repeated unresolved follow-up attempts."
+
+routing:
+  category_to_department:
+    bank_account: "Banking Operations"
+    credit_card: "Credit Card Services"
+    credit_reporting: "Credit Reporting & Disputes"
+    debt_collection: "Collections Resolution"
+    money_transfer: "Payments & Transfers"
+    mortgage: "Mortgage Services"
+    student_loan: "Student Loan Servicing"
+  specialist_queues:
+    - id: "fraud_queue"
+      indicator: "fraud_or_unauthorized"
+      secondary_department: "Fraud Investigation"
+      specialist_queue: "Fraud Investigation Queue"
+      reason: "Fraud or unauthorized transaction indicator detected."
+    - id: "legal_regulatory_queue"
+      indicator: "legal_or_regulatory"
+      secondary_department: "Regulatory & Legal Affairs"
+      specialist_queue: "Regulatory/Legal Review Queue"
+      reason: "Legal action or regulatory complaint indicator detected."
+    - id: "access_support_queue"
+      indicator: "account_access_issue"
+      secondary_department: "Account Access Support"
+      specialist_queue: "Account Support Priority Queue"
+      reason: "Account freeze or locked funds indicator detected."
+    - id: "credit_dispute_queue"
+      indicator: "formal_dispute"
+      secondary_department: "Dispute Resolution"
+      specialist_queue: "Formal Dispute Investigation Queue"
+      reason: "Formal dispute indicator detected."
+
+sla_policy:
+  timezone: "UTC"
+  business_hours_start: 9
+  business_hours_end: 17
+  working_days: [0, 1, 2, 3, 4]  # Monday=0 .. Friday=4
+  note: "Provisional operational SLA targets for decision-support queuing; not legally mandated deadlines."
+  tiers:
+    P1:
+      target_label: "4 business hours"
+      business_hours: 4
+      review_mode: "Immediate human review"
+    P2:
+      target_label: "1 business day"
+      business_hours: 8
+      review_mode: "Urgent review"
+    P3:
+      target_label: "3 business days"
+      business_hours: 24
+      review_mode: "Standard elevated queue"
+    P4:
+      target_label: "5 business days"
+      business_hours: 40
+      review_mode: "Standard queue"

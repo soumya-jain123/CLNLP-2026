@@ -1,0 +1,271 @@
+{
+  "generated_at_utc": "2026-11-19 04:45:21 UTC",
+  "source_files": {
+    "train_raw": "data/raw/train.csv",
+    "test_raw": "data/raw/test.csv"
+  },
+  "output_files": {
+    "train_clean": "data/processed/train_clean.csv",
+    "train_processed": "data/processed/train_processed.csv",
+    "test_processed": "data/processed/test_processed.csv",
+    "removed_duplicates_log": "data/processed/removed_duplicates_log.csv"
+  },
+  "strategies": {
+    "text_minimal": "Whitespace & redaction ([REDACTED]) normalization; preserves case, punctuation, numbers, URLs.",
+    "text_standard": "Lowercase, whitespace, redaction ([redacted]), URL ([url]) normalization; preserves numbers & currency.",
+    "text_stopword": "Standard normalization + English stopword removal preserving negation words.",
+    "text_lemmatized": "Standard normalization + spaCy en_core_web_sm lemmatization preserving negations & placeholders.",
+    "text_stemmed": "Standard normalization + NLTK Porter stemming preserving negations & placeholders."
+  },
+  "duplicate_analysis_raw": {
+    "train": {
+      "total_rows": 6469,
+      "exact_full_row_duplicates": 102,
+      "exact_narrative_duplicates": 105,
+      "exact_text_label_duplicates": 104,
+      "normalized_narrative_duplicates": 116,
+      "conflicting_label_groups_exact": 1,
+      "conflicting_label_rows_exact": 7,
+      "conflicting_label_groups_normalized": 1
+    },
+    "test": {
+      "total_rows": 1635,
+      "exact_full_row_duplicates": 0,
+      "exact_narrative_duplicates": 0,
+      "exact_text_label_duplicates": 0,
+      "normalized_narrative_duplicates": 0,
+      "conflicting_label_groups_exact": 0,
+      "conflicting_label_rows_exact": 0,
+      "conflicting_label_groups_normalized": 0
+    }
+  },
+  "duplicate_handling_report": {
+    "policy": "Exclude conflicting-label narrative groups completely; deduplicate exact (text, label) pairs keeping first occurrence; keep test split untouched.",
+    "original_train_rows": 6469,
+    "conflicting_label_groups": 1,
+    "rows_excluded_due_to_conflicts": 7,
+    "exact_duplicate_rows_removed": 99,
+    "total_rows_removed": 106,
+    "final_cleaned_train_rows": 6363,
+    "class_distribution_before": {
+      "bank_account": 960,
+      "credit_card": 862,
+      "credit_reporting": 819,
+      "debt_collection": 948,
+      "money_transfer": 960,
+      "mortgage": 960,
+      "student_loan": 960
+    },
+    "class_distribution_after": {
+      "bank_account": 960,
+      "credit_card": 848,
+      "credit_reporting": 750,
+      "debt_collection": 926,
+      "money_transfer": 959,
+      "mortgage": 960,
+      "student_loan": 960
+    }
+  },
+  "dataset_dimensions": {
+    "raw_train": [
+      6469,
+      3
+    ],
+    "raw_test": [
+      1635,
+      3
+    ],
+    "train_clean": [
+      6363,
+      3
+    ],
+    "train_processed": [
+      6363,
+      8
+    ],
+    "test_processed": [
+      1635,
+      8
+    ]
+  },
+  "class_distributions": {
+    "train_raw": {
+      "bank_account": 960,
+      "credit_card": 862,
+      "credit_reporting": 819,
+      "debt_collection": 948,
+      "money_transfer": 960,
+      "mortgage": 960,
+      "student_loan": 960
+    },
+    "train_processed": {
+      "bank_account": 960,
+      "credit_card": 848,
+      "credit_reporting": 750,
+      "debt_collection": 926,
+      "money_transfer": 959,
+      "mortgage": 960,
+      "student_loan": 960
+    },
+    "test_processed": {
+      "bank_account": 240,
+      "credit_card": 219,
+      "credit_reporting": 216,
+      "debt_collection": 240,
+      "money_transfer": 240,
+      "mortgage": 240,
+      "student_loan": 240
+    }
+  },
+  "strategy_comparison_train": [
+    {
+      "column": "text_raw",
+      "vocab_size_exploratory": 29325,
+      "mean_word_count": 224.33,
+      "median_word_count": 155.0,
+      "mean_char_count": 1257.1,
+      "word_reduction_pct": 0.0,
+      "char_reduction_pct": 0.0,
+      "empty_count": 0
+    },
+    {
+      "column": "text_minimal",
+      "vocab_size_exploratory": 29186,
+      "mean_word_count": 218.44,
+      "median_word_count": 151.0,
+      "mean_char_count": 1255.38,
+      "word_reduction_pct": 2.63,
+      "char_reduction_pct": 0.14,
+      "empty_count": 0
+    },
+    {
+      "column": "text_standard",
+      "vocab_size_exploratory": 29151,
+      "mean_word_count": 218.44,
+      "median_word_count": 151.0,
+      "mean_char_count": 1255.2,
+      "word_reduction_pct": 2.63,
+      "char_reduction_pct": 0.15,
+      "empty_count": 0
+    },
+    {
+      "column": "text_stopword",
+      "vocab_size_exploratory": 17016,
+      "mean_word_count": 103.42,
+      "median_word_count": 71.0,
+      "mean_char_count": 791.84,
+      "word_reduction_pct": 53.9,
+      "char_reduction_pct": 37.01,
+      "empty_count": 0
+    },
+    {
+      "column": "text_lemmatized",
+      "vocab_size_exploratory": 13952,
+      "mean_word_count": 216.78,
+      "median_word_count": 152.0,
+      "mean_char_count": 1180.61,
+      "word_reduction_pct": 3.37,
+      "char_reduction_pct": 6.08,
+      "empty_count": 0
+    },
+    {
+      "column": "text_stemmed",
+      "vocab_size_exploratory": 11432,
+      "mean_word_count": 214.35,
+      "median_word_count": 150.0,
+      "mean_char_count": 1111.02,
+      "word_reduction_pct": 4.45,
+      "char_reduction_pct": 11.62,
+      "empty_count": 0
+    }
+  ],
+  "strategy_comparison_test": [
+    {
+      "column": "text_raw",
+      "vocab_size_exploratory": 14983,
+      "mean_word_count": 221.78,
+      "median_word_count": 162.0,
+      "mean_char_count": 1239.1,
+      "word_reduction_pct": 0.0,
+      "char_reduction_pct": 0.0,
+      "empty_count": 0
+    },
+    {
+      "column": "text_minimal",
+      "vocab_size_exploratory": 14905,
+      "mean_word_count": 215.71,
+      "median_word_count": 157.0,
+      "mean_char_count": 1235.86,
+      "word_reduction_pct": 2.74,
+      "char_reduction_pct": 0.26,
+      "empty_count": 0
+    },
+    {
+      "column": "text_standard",
+      "vocab_size_exploratory": 14895,
+      "mean_word_count": 215.71,
+      "median_word_count": 157.0,
+      "mean_char_count": 1235.65,
+      "word_reduction_pct": 2.74,
+      "char_reduction_pct": 0.28,
+      "empty_count": 0
+    },
+    {
+      "column": "text_stopword",
+      "vocab_size_exploratory": 9222,
+      "mean_word_count": 101.91,
+      "median_word_count": 74.0,
+      "mean_char_count": 776.41,
+      "word_reduction_pct": 54.05,
+      "char_reduction_pct": 37.34,
+      "empty_count": 0
+    },
+    {
+      "column": "text_lemmatized",
+      "vocab_size_exploratory": 7451,
+      "mean_word_count": 214.41,
+      "median_word_count": 155.0,
+      "mean_char_count": 1162.97,
+      "word_reduction_pct": 3.32,
+      "char_reduction_pct": 6.14,
+      "empty_count": 0
+    },
+    {
+      "column": "text_stemmed",
+      "vocab_size_exploratory": 6327,
+      "mean_word_count": 212.06,
+      "median_word_count": 153.0,
+      "mean_char_count": 1094.75,
+      "word_reduction_pct": 4.38,
+      "char_reduction_pct": 11.65,
+      "empty_count": 0
+    }
+  ],
+  "validation_results": {
+    "columns_verified": true,
+    "missing_values_train": 0,
+    "missing_values_test": 0,
+    "train_rows_verified": 6363,
+    "test_rows_verified": 1635,
+    "labels_preserved": true,
+    "raw_text_preserved": true,
+    "empty_texts_train": {
+      "text_raw": 0,
+      "text_minimal": 0,
+      "text_standard": 0,
+      "text_stopword": 0,
+      "text_lemmatized": 0,
+      "text_stemmed": 0
+    },
+    "empty_texts_test": {
+      "text_raw": 0,
+      "text_minimal": 0,
+      "text_standard": 0,
+      "text_stopword": 0,
+      "text_lemmatized": 0,
+      "text_stemmed": 0
+    },
+    "train_test_exact_overlap": 0,
+    "train_test_normalized_overlap": 0
+  }
+}

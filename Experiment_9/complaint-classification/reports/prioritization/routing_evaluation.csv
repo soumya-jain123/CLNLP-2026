@@ -1,0 +1,8 @@
+expected_category,Total,Correct_Routing,Routing_Accuracy
+bank_account,4,4,1.0
+credit_card,4,4,1.0
+credit_reporting,4,4,1.0
+debt_collection,4,4,1.0
+money_transfer,4,4,1.0
+mortgage,4,4,1.0
+student_loan,4,4,1.0

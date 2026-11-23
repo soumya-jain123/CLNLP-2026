@@ -1,0 +1,106 @@
+Class,Feature,Weight
+bank_account,bank,3.0057
+bank_account,account,2.1784
+bank_account,chime,1.9765
+bank_account,checking,1.9187
+bank_account,branch,1.7674
+bank_account,checking account,1.7051
+bank_account,overdraft,1.6293
+bank_account,atm,1.4946
+bank_account,banking,1.493
+bank_account,debit,1.4681
+bank_account,deposit,1.4291
+bank_account,debit card,1.4031
+bank_account,transactions,1.3871
+bank_account,open,1.3469
+bank_account,check,1.342
+credit_card,card,5.6525
+credit_card,synchrony,1.9537
+credit_card,cards,1.7371
+credit_card,credit card,1.7361
+credit_card,amex,1.4558
+credit_card,prepaid,1.3365
+credit_card,express,1.2524
+credit_card,capital,1.2304
+credit_card,credit,1.2143
+credit_card,timely payments,1.1602
+credit_card,discover,1.1381
+credit_card,american express,1.1317
+credit_card,credit cards,1.103
+credit_card,american,1.0678
+credit_card,comenity,1.0622
+credit_reporting,experian,2.32
+credit_reporting,inquiries,2.112
+credit_reporting,transunion,1.9976
+credit_reporting,report,1.7019
+credit_reporting,items,1.6511
+credit_reporting,equifax,1.5841
+credit_reporting,remove,1.3467
+credit_reporting,accounts,1.2626
+credit_reporting,reporting,1.0567
+credit_reporting,redacted balance,0.9788
+credit_reporting,credit,0.9534
+credit_reporting,sections,0.8834
+credit_reporting,inquiry,0.8765
+credit_reporting,redacted equifax,0.8733
+credit_reporting,incorrect,0.8614
+debt_collection,debt,4.9665
+debt_collection,collection,2.361
+debt_collection,collect,1.5096
+debt_collection,company,1.5048
+debt_collection,collections,1.4027
+debt_collection,owe,1.2906
+debt_collection,owed,1.258
+debt_collection,recovery,1.1594
+debt_collection,management,0.9992
+debt_collection,portfolio,0.9851
+debt_collection,lvnv,0.9326
+debt_collection,systems,0.9294
+debt_collection,court,0.9016
+debt_collection,medical,0.8734
+debt_collection,garnishment,0.8656
+money_transfer,paypal,3.7062
+money_transfer,venmo,2.9113
+money_transfer,money,2.6003
+money_transfer,transfer,2.3548
+money_transfer,wire,2.0616
+money_transfer,coinbase,1.8212
+money_transfer,zelle,1.8055
+money_transfer,scam,1.6663
+money_transfer,cashapp,1.588
+money_transfer,crypto,1.5838
+money_transfer,transaction,1.4861
+money_transfer,transfers,1.3872
+money_transfer,cash,1.3867
+money_transfer,scammed,1.3781
+money_transfer,wallet,1.3118
+mortgage,mortgage,6.9737
+mortgage,home,2.8702
+mortgage,escrow,2.8603
+mortgage,foreclosure,2.1609
+mortgage,loan,1.9234
+mortgage,modification,1.8501
+mortgage,house,1.6478
+mortgage,property,1.3945
+mortgage,loancare,1.3886
+mortgage,lender,1.2644
+mortgage,insurance,1.2333
+mortgage,heloc,1.2327
+mortgage,cooper,1.1728
+mortgage,closing,1.1295
+mortgage,mr cooper,1.0807
+student_loan,mohela,3.5581
+student_loan,nelnet,3.538
+student_loan,loans,3.2299
+student_loan,student,2.5322
+student_loan,loan,2.3876
+student_loan,aidvantage,2.3547
+student_loan,edfinancial,2.201
+student_loan,navient,2.0363
+student_loan,repayment,1.6728
+student_loan,payment,1.6452
+student_loan,school,1.5796
+student_loan,student loan,1.5699
+student_loan,plan,1.3696
+student_loan,payments,1.1951
+student_loan,save,1.1893

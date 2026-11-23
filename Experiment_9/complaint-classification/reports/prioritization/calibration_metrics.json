@@ -1,0 +1,9 @@
+{
+  "calibration_method": "CalibratedClassifierCV(method='sigmoid', cv=5)",
+  "validation_samples": 1273,
+  "val_accuracy": 0.8586,
+  "val_f1_macro": 0.857,
+  "multiclass_brier_score": 0.2292,
+  "expected_calibration_error_ece": 0.085,
+  "calibrated_model_path": "models/calibrated_linear_svc.joblib"
+}

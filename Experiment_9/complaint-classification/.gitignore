@@ -1,0 +1,14 @@
+# Virtual environments & caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Massive transformer model weights (exceeds GitHub 100 MB limit; re-generated via experiment_runner.py)
+models/transformers/*/model.safetensors
+models/transformers/*/pytorch_model.bin
+
+# Runtime audit logs
+reports/prioritization/audit_log.jsonl
+reports/prioritization/synthetic_audit_log.jsonl

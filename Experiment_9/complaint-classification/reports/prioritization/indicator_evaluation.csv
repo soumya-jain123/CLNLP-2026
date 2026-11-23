@@ -1,0 +1,7 @@
+indicator,TP,FP,FN,TN,Precision,Recall,F1,FPR,FNR
+unauthorized_transaction,4,0,0,24,1.0,1.0,1.0,0.0,0.0
+fraud_related,4,0,0,24,1.0,1.0,1.0,0.0,0.0
+account_access_issue,2,0,0,26,1.0,1.0,1.0,0.0,0.0
+legal_action_mentioned,4,0,0,24,1.0,1.0,1.0,0.0,0.0
+repeated_contact,8,0,0,20,1.0,1.0,1.0,0.0,0.0
+monetary_amount_mentioned,10,0,0,18,1.0,1.0,1.0,0.0,0.0

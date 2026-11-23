@@ -1,0 +1,108 @@
+# Phase 5: Resource-Aware Transformer Experiment Matrix
+# Hardware profile: CPU-only (PyTorch 2.2.1+cpu, 16 logical cores, FP32, dynamic padding)
+# Stratified 80/20 train/val split from data/processed/train_processed.csv (seed=42)
+
+seed: 42
+val_size: 0.2
+processed_dir: "data/processed"
+reports_dir: "reports/transformers"
+models_dir: "models/transformers"
+
+experiments:
+  - id: "T01"
+    model_name: "BERT-mini (L=128)"
+    checkpoint: "prajjwal1/bert-mini"
+    input_col: "text_minimal"
+    max_length: 128
+    learning_rate: 5.0e-5
+    batch_size: 32
+    epochs: 3
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "standard"
+    early_stopping_patience: 2
+    use_amp: false
+
+  - id: "T02"
+    model_name: "BERT-mini (L=256)"
+    checkpoint: "prajjwal1/bert-mini"
+    input_col: "text_minimal"
+    max_length: 256
+    learning_rate: 5.0e-5
+    batch_size: 32
+    epochs: 3
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "standard"
+    early_stopping_patience: 2
+    use_amp: false
+
+  - id: "T03"
+    model_name: "BERT-mini (L=256, Weighted)"
+    checkpoint: "prajjwal1/bert-mini"
+    input_col: "text_minimal"
+    max_length: 256
+    learning_rate: 5.0e-5
+    batch_size: 32
+    epochs: 3
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "weighted"
+    early_stopping_patience: 2
+    use_amp: false
+
+  - id: "T04"
+    model_name: "ELECTRA-small (L=128)"
+    checkpoint: "google/electra-small-discriminator"
+    input_col: "text_minimal"
+    max_length: 128
+    learning_rate: 5.0e-5
+    batch_size: 32
+    epochs: 3
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "standard"
+    early_stopping_patience: 2
+    use_amp: false
+
+  - id: "T05"
+    model_name: "MiniLM-L6 (L=128, LR=5e-5)"
+    checkpoint: "sentence-transformers/all-MiniLM-L6-v2"
+    input_col: "text_minimal"
+    max_length: 128
+    learning_rate: 5.0e-5
+    batch_size: 32
+    epochs: 3
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "standard"
+    early_stopping_patience: 2
+    use_amp: false
+
+  - id: "T06"
+    model_name: "MiniLM-L6 (L=256, LR=5e-5)"
+    checkpoint: "sentence-transformers/all-MiniLM-L6-v2"
+    input_col: "text_minimal"
+    max_length: 256
+    learning_rate: 5.0e-5
+    batch_size: 32
+    epochs: 3
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "standard"
+    early_stopping_patience: 2
+    use_amp: false
+
+  - id: "T07"
+    model_name: "DistilBERT-base (L=128)"
+    checkpoint: "distilbert-base-uncased"
+    input_col: "text_minimal"
+    max_length: 128
+    learning_rate: 3.0e-5
+    batch_size: 32
+    epochs: 2
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    loss: "standard"
+    early_stopping_patience: 2
+    use_amp: false

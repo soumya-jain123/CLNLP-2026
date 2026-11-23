@@ -1,0 +1,8 @@
+,bank_account,credit_card,credit_reporting,debt_collection,money_transfer,mortgage,student_loan
+bank_account,184,15,2,1,36,2,0
+credit_card,15,179,9,6,8,2,0
+credit_reporting,0,5,189,17,0,2,3
+debt_collection,6,6,28,193,2,4,1
+money_transfer,51,9,1,1,174,4,0
+mortgage,5,3,4,4,2,220,2
+student_loan,0,3,1,4,0,5,227
